@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class TopicControler {
 	
 	@Autowired
-	private TopicService topic;
+	private TopicService topicService;
 	
 	
 	@RequestMapping("/filmTopic/{id}")
 	public Topic getFilmTopics(@PathVariable String id){
-		return topic.getFilmTopic(id);
+		return topicService.getFilmTopic(id);
+	}
+	
+	@RequestMapping("/filmTopic")
+	public List<Topic> getAllFilmTopics(){
+		return topicService.getAllFilmTopics();
 	}
 	
 	//http://localhost:8080/topics?name=kamil
@@ -40,4 +47,8 @@ public class TopicControler {
 				new Topic("c#", "programming in c#"));
 	}
 
+	@RequestMapping(method=RequestMethod.POST, value = "/filmTopic")
+	public void addFilmTopic(@RequestBody Topic topic) {
+		topicService.addFilmTopic(topic);
+	}
 }
