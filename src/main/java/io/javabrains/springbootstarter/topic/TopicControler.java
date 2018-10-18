@@ -29,6 +29,22 @@ public class TopicControler {
 		return topicService.getAllFilmTopics();
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value = "/filmTopic")
+	public void addFilmTopic(@RequestBody Topic topic) {
+		topicService.addFilmTopic(topic);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value = "/filmTopic/{id}")
+	public void updateFilmTopic(@RequestBody Topic topic, @PathVariable("id") String id) {
+		topicService.updateFilmTopic(id, topic);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value = "/filmTopic/{id}")
+	public void deleteFilmTopic(@PathVariable("id") String id) {
+		topicService.deleteFilmTopic(id);
+	}
+	
+	
 	//http://localhost:8080/topics?name=kamil
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopics(@RequestParam(value ="name", defaultValue = "defaulty") String imie) {
@@ -47,8 +63,5 @@ public class TopicControler {
 				new Topic("c#", "programming in c#"));
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value = "/filmTopic")
-	public void addFilmTopic(@RequestBody Topic topic) {
-		topicService.addFilmTopic(topic);
-	}
+	
 }

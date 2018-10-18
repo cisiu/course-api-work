@@ -26,12 +26,22 @@ public class TopicService {
 	}
 
 	public void addFilmTopic(Topic topic) {
-		// TODO Auto-generated method stub
 		filmTopic.add(topic);
 	}
 
 	public List<Topic> getAllFilmTopics() {
-		// TODO Auto-generated method stub
 		return filmTopic;
+	}
+
+	public void updateFilmTopic(String id, Topic topic) {
+		for (Topic t: filmTopic) {
+			if (t.getId().equals(id)) {
+				filmTopic.set(filmTopic.indexOf(t), topic);
+			}
+		}
+	}
+
+	public void deleteFilmTopic(String id) {
+		filmTopic.removeIf(t -> t.getId().equals(id));
 	}
 }
