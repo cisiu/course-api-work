@@ -14,6 +14,8 @@ public class TopicService {
 			new Topic("kryminal", "smierc w wenecji"),
 			new Topic("melodramat", "lovesick")));
 	
+	
+	
 	public Topic getFilmTopic(String id){
 		return filmTopic.stream().filter(t -> t.getId().equals(id)).findFirst().get();
 	}
